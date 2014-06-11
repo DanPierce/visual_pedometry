@@ -1,0 +1,12 @@
+<launch>
+    <include file="$(find visual_pedometry)/launch/ublox.launch">
+  		<!-- <arg name="camera" value="kinect"/> -->
+    </include>
+
+	<include file="$(find xsens_driver)/launch/xsens_driver.launch">
+  		<!-- <arg name="camera" value="kinect"/> -->
+    </include>
+
+	
+
+</launch>

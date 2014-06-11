@@ -1,0 +1,28 @@
+<!-- author: Robert Cofield -->
+<launch>
+    <!-- kills XnSensorServer on shutdown -->
+    <node pkg="pointcloud_shiz" type="xn_sensor_server_cleanup.sh" name="XnSensorServer_cleanup"
+        output="screen"/>
+
+    <!-- openni_manager -->
+    <node pkg="nodelet" type="nodelet" name="openni_manager"
+        output="screen" respawn="true" args="manager"/>
+
+    <!-- asus pointcloud and frame ids -->
+    <include file="$(find openni2_launch)/launch/openni2.launch">
+      <arg name="camera" value="asus"/>
+    <!-- <node pkg="nodelet" type="nodelet" name="openni_camera" args="load openni_camera/OpenNINodelet openni_manager" respawn="true"/> -->
+        <!-- <arg name="device_id" value="#1"/> -->
+        <!-- <arg name="respawn" value="true"/> -->
+        <!-- <arg name="debug" value="true"/> -->
+        <!-- <param name="/camera/driver/depth_mode" value="1"/> -->
+        <!-- <param name="/camera/driver/image_mode" value="1"/> -->
+        <!-- <param name="/asus/driver/depth_registration" value="true"/> -->
+        <!-- <param name="/asus/driver/data_skip" value="5"/> -->
+    </include>
+
+    <!-- rViz -->
+    <!--<node name="rviz" pkg="rviz" type="rviz"
+    args="-d $(find pointcloud_shiz)/cfg/asusviz.vcg" required="true" output="screen"/> -->
+
+</launch>
