@@ -8,7 +8,8 @@
 	    <param name="stereo_method" value="Interlaced" />
 	    <param name="camera_info_url_left" value="" />
 	    <param name="camera_info_url_right" value="" />
-	    <rosparam file="$(find visual_pedometry)/config/bumblebee_cal.yml"/>
+	    <remap from="stereo_camera" to="bumblebee"/>
+<!-- 	    <rosparam file="$(find visual_pedometry)/config/bumblebee_cal.yml"/> -->
  	</node>
 
 </launch>

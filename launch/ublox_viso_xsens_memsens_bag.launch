@@ -1,0 +1,22 @@
+<launch>
+	<!-- Launch Ublox GPS -->
+    <!-- <include file="$(find visual_pedometry)/launch/ublox.launch"> -->
+  		<!-- <arg name="camera" value="kinect"/> -->
+    <!-- </include> -->
+
+	<!-- Launch xsens IMU -->
+	<include file="$(find visual_pedometry)/launch/xsens.launch"/>
+
+
+	<!-- Launch Visual Odometry Package -->
+    <include file="$(find visual_pedometry)/launch/visodom.launch"/>
+  		<!-- <arg name="camera" value="kinect"/> -->
+    <!-- </include> -->
+	
+	<!-- Launch memsense IMU -->
+	<include file="$(find visual_pedometry)/launch/memsense.launch"/>
+
+<!--     <node pkg="rosbag" type="record" name="cmds"
+       args="-O testest /xsens/data /memsense/data /stereo_odometer/odometry /stereo_odometer/pose"/> -->
+
+</launch>

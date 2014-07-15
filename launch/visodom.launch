@@ -6,7 +6,7 @@
 
 	<!-- Arguments -->
 	<!-- <arg name="bagfile" default="bagfile.bag"/> -->
-	<!-- <arg name="camera" default="/mono" />  -->
+	<arg name="camera" default="bumblebee" /> 
 	<!-- <arg name="diparity_params" value="disparity_params.yaml"/> -->
 
 	<!-- <param name="/use_sim_time" value="false"/> -->
@@ -15,10 +15,10 @@
 
 
 	<!-- Run the openni package -->
-	<include file="$(find visual_pedometry)/launch/ir_depth_cam.launch"/>
+	<include file="$(find visual_pedometry)/launch/bumblebee.launch"/>
 
 	<!-- Run the ROS package stereo_image_proc -->
-	<group ns="asus" >
+	<group ns="$(arg camera)" >
 		<node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc">
 	    	<!-- <rosparam file="$(arg disparity_params)"/> -->
 		</node>
@@ -26,7 +26,7 @@
 
 	<!-- Run the viso2_ros package -->
 	<node pkg="viso2_ros" type="stereo_odometer" name="stereo_odometer" output="screen">
-		<remap from="stereo" to="asus"/>
+		<remap from="stereo" to="$(arg camera)"/>
 		<remap from="image" to="image_rect"/>
 	</node>
 
