@@ -1,0 +1,30 @@
+<launch>
+	<!-- Launch OEMstar Novatel GPS -->
+    <include file="$(find visual_pedometry)/launch/novatel_for_psr.launch"/>
+   
+	<!-- Launch Propak Novatel GPS -->
+	<!-- <include file="$(find visual_pedometry)/launch/novatel_for_rtk.launch"/> -->
+   
+	<!-- Launch xsens IMU -->
+	<include file="$(find visual_pedometry)/launch/xsens.launch"/>
+
+	<!-- Launch memsense IMU -->
+	<include file="$(find visual_pedometry)/launch/memsense.launch"/>
+
+	<!-- Launch Bumblebee Stereo Camera -->
+    <!-- <include file="$(find visual_pedometry)/launch/bumblebee.launch"/> -->
+
+	<!-- Launch Visual Odometry Node -->
+    <include file="$(find visual_pedometry)/launch/visodom.launch"/>
+
+    <node pkg="rosbag" type="record" name="bag_record"
+       args="-o full_data_collection /magnetic /xsens/data /imu_node/paramer_updates /memsense/mag /psr/gps_fix_psr /psr/gps_fix_best_ecef /psr/gps_fix_ecef /ephemeris /range /bumblebee/disparity /bumblebee/right/camera_info /bumblebee/left/camera_info /bumblebee/right/image_rect /bumblebee/left/image_rect /camera1394stereo_node/parameter_updates /stereo_odometer/info /stereo_odometer/pose"/>
+
+<!-- /bumblebee/right/image_raw /bumblebee/left/image_raw /bumblebee/right/image_mono /bumblebee/left/image_mono
+/bumblebee/right/image_rect_color /bumblebee/left/image_rect_color
+       /bumblebee/right/image_color /bumblebee/left/image_color  -->
+<!-- 
+/stereo_odometer/info
+		/stereo_odometer/pose -->
+
+</launch>

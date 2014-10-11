@@ -1,0 +1,46 @@
+<launch>
+
+  <node pkg="novatel" type="novatel_node" name="novatel_rtk_node" output="screen" 
+      required="true">
+
+    <param name="port" value="/dev/ttyUSB2" />
+    <param name="baudrate" value="115200" />
+
+    <param name="odom_topic" value="/rtk/gps_odom" />
+    <param name="nav_sat_fix_topic" value="/rtk/gps_fix" />
+    <param name="psrpos_topic" value="/rtk/gps_fix_psr" />
+    <param name="bestecefpos_topic" value="/rtk/gps_fix_best_ecef" />
+    <param name="psrecefpos_topic" value="/rtk/gps_fix_psr_ecef" />
+
+    <param name="ephemeris_topic" value="/ephemeris" />
+    <param name="dual_band_range_topic" value="/range" />
+
+    <!-- Hodo - include something useful here. -->
+    <param name="span_default_logs_period" value="0.0" />
+    <param name="gps_default_logs_period" value="1.0" />
+
+    <!-- Note that NavSatFix topics (as is psrpos) report position covariance
+          matrices with ENU units. In order to obtain this, you must also ask 
+          for the BestUTM log. Otherwise, only PSR LLA will be reported. -->
+    <param name="psrpos_default_logs_period" value="1.0" />
+
+    <param name="log_commands" value="BESTUTMB ONTIME 1.0; BESTVELB ONTIME 1.0; BESTXYZB ONTIME 1.0; PSRXYZB ONTIME 1.0" />
+
+    <!-- L1L2Range message. This requires the BestUTM log be requested, as it 
+    requires LLA and LLA StD. -->
+    <param name="range_default_logs_period" value="1.0" />
+
+    <!-- will call GPSEPHEMB _____, using the string specified here
+        Logging options:
+            ONCHANGED
+            ONNEW
+            ONTIME 1.0 (or other interval)
+            ONCE
+        In the case of an empty string, no ephermis will be requested (default)
+     -->
+    <param name="ephem_log" value="ONTIME 5.0" />
+
+  </node>
+
+</launch>
+

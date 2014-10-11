@@ -1,31 +1,34 @@
 <launch>
 
- <!-- imu_node -->
+  <!-- imu_node -->
   <node pkg="memsense_imu" type="imu_node" name="imu_node" output="screen">
-    <!-- <param name="polling_rate" value="166.666" type="double" /> -->
-    <!-- <param name="filter_rate"  value="10.0" type="double" /> -->
-    <!-- <param name="frame_id"     value="imu" type="string" /> -->
-    <param name="serial_port"  value="/dev/ttyUSB0" type="string" />
-    <!-- <param name="imu_type"     value="nIMU_3temp" type="string" /> -->
-    
     <remap from="imu"  to="memsense" />
-    <param name="accels_range" value="6" type="double" />
-    <!-- <param name="accel_bias_x" value="0.02" type="double" /> -->
-    <!-- <param name="accel_bias_y" value="0.0" type="double" /> -->
-    <!-- <param name="accel_bias_z" value="0.0" type="double" /> -->
-    <!-- <param name="accels_var"   value="0.0" type="double" /> -->
+
+    <!-- <param name="polling_rate" value="166.666" type="double" /> -->
+    <param name="filter_rate"  value="10.0" type="double" />
+    <param name="frame_id"     value="imu" type="string" />
+    <param name="serial_port"  value="/dev/ttyUSB0" type="string" />
+    <param name="imu_type"     value="nIMU_3temp" type="string" />
+
+    <param name="accels_range" value="19.620000000000001" type="double" />
+    <param name="accel_bias_x" value="0.02" type="double" />
+    <param name="accel_bias_y" value="0.0" type="double" />
+    <param name="accel_bias_z" value="0.0" type="double" />
+    <param name="accels_var"   value="0.0" type="double" />
 
     <!-- <param name="gyros_range"  value="2.617993877991494" type="double" /> -->
-    <!-- <param name="gyro_bias_x"  value=" 0.009295" type="double" /> -->
-    <!-- <param name="gyro_bias_y"  value=" 0.017145" type="double" /> -->
-    <!-- <param name="gyro_bias_z"  value="-0.002915" type="double" /> -->
-    <!-- <param name="gyros_var"    value="0.0" type="double" /> -->
+    <param name="gyros_range"  value="5.235987756" type="double" />
 
-    <!-- <param name="mag_bias_x"   value="0.0" type="double" /> -->
-    <!-- <param name="mag_bias_y"   value="0.0" type="double" /> -->
-    <!-- <param name="mag_bias_z"   value="0.0" type="double" /> -->
-    <!-- <param name="mags_range"   value="1.8999999999999999" type="double" /> -->
-    <!-- <param name="mags_var"     value="0.0" type="double" /> -->
+    <param name="gyro_bias_x"  value=" 0.009295" type="double" />
+    <param name="gyro_bias_y"  value=" 0.017145" type="double" />
+    <param name="gyro_bias_z"  value="-0.002915" type="double" />
+    <param name="gyros_var"    value="0.0" type="double" />
+
+    <param name="mag_bias_x"   value="0.0" type="double" />
+    <param name="mag_bias_y"   value="0.0" type="double" />
+    <param name="mag_bias_z"   value="0.0" type="double" />
+    <param name="mags_range"   value="1.8999999999999999" type="double" />
+    <param name="mags_var"     value="0.0" type="double" />
   </node>
   
 </launch>

@@ -1,0 +1,29 @@
+<launch>
+
+    <!-- Run the xsens package -->
+    <include file="$(find visual_pedometry)/launch/xsens.launch"/>
+
+    <!-- Run the visual odometry package -->
+    <include file="$(find visual_pedometry)/launch/visodom.launch"/>
+
+<node pkg="tf" type="static_transform_publisher" name="camera_to_base"
+    args="0 0 0 -1.570796327 0 -1.570796327 /base_link /stereo_camera 100" />
+
+<node pkg="tf" type="static_transform_publisher" name="imu_to_base"
+    args="0 0 0.033 0 0 -3.141592654 /base_link /xsens 100" />
+    
+    <!-- Run the robot_pose_ekf package -->
+  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <param name="output_frame" value="odom"/>
+    <param name="freq" value="30.0"/>
+    <param name="sensor_timeout" value="1.0"/>
+    <param name="odom_used" value="false"/>
+    <param name="imu_used" value="true"/>
+    <param name="vo_used" value="true"/>
+    <param name="debug" value="false"/>
+    <param name="self_diagnose" value="false"/>
+    <remap from="imu_data"  to="/xsens/data" />
+    <remap from="vo"  to="/stereo_odometer/odometry" />
+  </node>
+
+ </launch>
